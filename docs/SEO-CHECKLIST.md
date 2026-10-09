@@ -54,3 +54,13 @@ Run `python3 scripts/check-seo.py`. This validates the local crawl directives, c
 The Chrome DevTools MCP required by the web-perf skill was unavailable, so no DevTools trace or measured INP/CLS/LCP score is claimed. Browser rendering and asset validation are separate checks. Use PageSpeed Insights/Search Console for production measurement.
 
 Sources: https://developers.google.com/search/docs/appearance/structured-data/local-business ; https://developers.google.com/search/docs/crawling-indexing/robots/intro ; https://web.dev/articles/vitals ; https://support.google.com/business/answer/7091
+
+## Deployment verification — 9 October 2026
+
+Commit f6444dc deployed successfully via the GitHub check named `Workers Builds: libraywebsite` (the integration reports Workers Builds, although described as Pages). The public custom domain now serves the SEO update.
+
+Confirmed live using curl: homepage, robots.txt and sitemap.xml return 200; no noindex header; homepage contains the canonical and LocalBusiness JSON-LD with all seven opening days; regular fees are unchanged. The hero WebP returns 200 with `Cache-Control: public, max-age=604800`; /index.html returns 301 to /.
+
+Confirmed in browser: desktop and 320px/354px CSS viewports show no horizontal page overflow; all six inline images load after scrolling; membership navigation works and prices remain legible. Solid-background text checks: secondary text 5.25:1 on cream and 4.83:1 on facilities background; button text 8.70:1; visit labels 4.83:1. This is not a comprehensive WCAG audit.
+
+Still outstanding: HTTP-to-HTTPS redirect at the hosting/CDN layer, Search Console ownership/Googlebot live testing, Google's Rich Results Test, and production Core Web Vitals measurement. One Python automated-client request received HTTP 403; curl checks succeeded. Do not assume this means Googlebot is blocked or that it is allowed—verify through Search Console and inspect Cloudflare security events if its live test fails.
