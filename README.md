@@ -25,3 +25,11 @@ The user-supplied logo is preserved at `dist/images/logo.png` and used in the he
 Opening hours are corrected by the owner to 6 AM–10 PM. Four study batches run 6–10 AM, 10 AM–2 PM, 2–6 PM, and 6–10 PM. These supersede the earlier Maps hours.
 
 The owner confirmed all four membership fees are monthly: ₹350, ₹550, ₹750 and ₹950.
+
+
+## Local SEO and release checks
+
+Canonical public website: https://silentzone.nirajpaul.com/.
+Run `python3 scripts/check-seo.py` before publishing. See [the SEO audit and launch checklist](docs/SEO-CHECKLIST.md) for Google Business Profile, Search Console, sitemap submission and manual validation.
+
+All regular prices are unchanged; no October discount is configured. Opening hours are confirmed daily, 6 AM–10 PM. The static output remains `dist`; `_headers` and `_redirects` apply on compatible hosting. Enable HTTP-to-HTTPS redirection at the hosting/CDN level.

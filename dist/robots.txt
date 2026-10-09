@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://silentzone.nirajpaul.com/sitemap.xml

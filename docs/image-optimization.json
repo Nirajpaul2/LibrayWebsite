@@ -1,0 +1,70 @@
+{
+  "hero": {
+    "original_bytes": 1201322,
+    "dimensions": [
+      1280,
+      720
+    ],
+    "variants": {
+      "480": 22806,
+      "800": 46070,
+      "1200": 77616
+    }
+  },
+  "study-hall": {
+    "original_bytes": 1106307,
+    "dimensions": [
+      1280,
+      720
+    ],
+    "variants": {
+      "400": 13784,
+      "800": 34576
+    }
+  },
+  "reception": {
+    "original_bytes": 1203059,
+    "dimensions": [
+      1280,
+      720
+    ],
+    "variants": {
+      "400": 16520,
+      "800": 47884
+    }
+  },
+  "entrance": {
+    "original_bytes": 653464,
+    "dimensions": [
+      789,
+      1024
+    ],
+    "variants": {
+      "400": 12480,
+      "800": 26872
+    }
+  },
+  "library": {
+    "original_bytes": 118982,
+    "dimensions": [
+      1360,
+      765
+    ],
+    "variants": {
+      "480": 20110,
+      "800": 42450,
+      "1200": 74898
+    }
+  },
+  "logo": {
+    "original_bytes": 1252638,
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "variants": {
+      "84": 1324,
+      "168": 3260
+    }
+  }
+}
