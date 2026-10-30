@@ -1,0 +1,120 @@
+{
+  "date": "2026-10-31",
+  "commit": "4cf92f1",
+  "framework": "Static HTML/CSS; no bundler or application runtime",
+  "title": "Self Study Library in Samastipur | Silent Zone, Musapur",
+  "description": "Silent Zone Self Study Library in Musapur, Samastipur: AC study desks, 4\u201316 hour batches, monthly fees from \u20b9350. Visit Sonbersa Chowk, 6 AM\u201310 PM.",
+  "headings": [
+    [
+      "h1",
+      "Self study libraryin Samastipur.\n"
+    ],
+    [
+      "h2",
+      "Your study roomin Sonbersa.\n"
+    ],
+    [
+      "h2",
+      "AC study space.Everyday essentials."
+    ],
+    [
+      "h3",
+      "Air-conditioned hall"
+    ],
+    [
+      "h3",
+      "Your own study desk"
+    ],
+    [
+      "h3",
+      "RO drinking water"
+    ],
+    [
+      "h3",
+      "Power backup"
+    ],
+    [
+      "h3",
+      "Locker facility"
+    ],
+    [
+      "h3",
+      "Parking space"
+    ],
+    [
+      "h2",
+      "Monthly membershipsand study batches."
+    ],
+    [
+      "h3",
+      "Single batch"
+    ],
+    [
+      "h3",
+      "Double batch"
+    ],
+    [
+      "h3",
+      "Triple batch"
+    ],
+    [
+      "h3",
+      "Full time"
+    ],
+    [
+      "h3",
+      "Study batch timings"
+    ],
+    [
+      "h2",
+      "A look inside Silent Zone."
+    ],
+    [
+      "h2",
+      "Visit Silent Zonein Musapur.\n"
+    ]
+  ],
+  "canonical": [
+    "https://silentzone.nirajpaul.com/"
+  ],
+  "noindex_in_html": false,
+  "html_bytes": 18532,
+  "css_bytes": 15207,
+  "http_status": "200 (no HTTPS redirect)",
+  "unknown_url_status": 404,
+  "index_html_status": 301,
+  "LCP": null,
+  "INP": null,
+  "CLS": null,
+  "CWV_note": "No field data for LCP/INP/CLS. Separate PageSpeed mobile lab baseline is recorded; lab results are not field Core Web Vitals.",
+  "home_response": {
+    "status": "HTTP/2 200 ",
+    "x_robots_tag": []
+  },
+  "robots_response": {
+    "status": "HTTP/2 200 ",
+    "x_robots_tag": []
+  },
+  "sitemap_response": {
+    "status": "HTTP/2 200 ",
+    "x_robots_tag": []
+  },
+  "pagespeed_mobile_lab": {
+    "report": "https://pagespeed.web.dev/analysis/https-silentzone-nirajpaul-com/dpzenzosyr?form_factor=mobile",
+    "lighthouse": "13.6.0",
+    "device": "Emulated Moto G Power",
+    "network": "Slow 4G",
+    "performance": 95,
+    "accessibility": 100,
+    "best_practices": 100,
+    "seo_checks": 100,
+    "FCP_seconds": 1.5,
+    "LCP_seconds": 2.6,
+    "TBT_ms": 0,
+    "CLS": 0,
+    "speed_index_seconds": 3.9,
+    "field_data": "No Data",
+    "render_blocking_estimated_savings_ms": 720,
+    "image_delivery_estimated_savings_KiB": 16
+  }
+}

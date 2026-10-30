@@ -20,6 +20,15 @@ class Page(HTMLParser):
     def handle_data(self, data):
         if self.in_schema: self.schema.append(data)
 html=(ROOT/'index.html').read_text(); page=Page(); page.feed(html)
+assert '<title>Silent Zone Library Samastipur | AC Self Study Library</title>' in html
+meta={a.get('name',a.get('property')):a.get('content') for t,a in page.tags if t=='meta'}
+assert meta['description']==meta['og:description']==meta['twitter:description']
+assert meta['og:title']==meta['twitter:title']=='Silent Zone Library Samastipur | AC Self Study Library'
+assert meta['og:image']==meta['twitter:image']==ORIGIN+'images/library-1200.webp'
+assert meta['twitter:card']=='summary_large_image'
+assert meta['og:image:alt'] and meta['twitter:image:alt']
+levels=[int(t[1]) for t,a in page.tags if re.fullmatch('h[1-6]',t)]
+assert all(b<=a+1 for a,b in zip(levels,levels[1:])), 'Heading hierarchy skips a level'
 assert page.h1==1 and len(page.ids)==len(set(page.ids))
 assert [a['href'] for t,a in page.tags if t=='link' and a.get('rel')=='canonical']==[ORIGIN]
 for tag,a in page.tags:
@@ -29,6 +38,11 @@ for tag,a in page.tags:
         assert a.get('alt') and int(a['width'])>0 and int(a['height'])>0
         assert a.get('srcset') and a.get('sizes')
         for candidate in a['srcset'].split(','): assert (ROOT/candidate.strip().split()[0].lstrip('/')).is_file()
+        if a.get('class')=='hero-image': assert a.get('loading')!='lazy' and a.get('fetchpriority')=='high'
+    if tag=='iframe': assert a.get('title') and a.get('loading')=='lazy'
+    if tag=='a' and a.get('href','').startswith(('tel:', 'https://wa.me/', 'https://www.google.com/maps/dir/')):
+        assert a.get('data-contact-action') in ('phone','whatsapp','directions')
+        assert a.get('data-membership-plan') in ('none','single','double','triple','full')
     if tag=='a' and a.get('href','').startswith('#'): assert a['href'][1:] in page.ids
     for key in ('href','src'):
         value=a.get(key,'')
@@ -38,7 +52,9 @@ for tag,a in page.tags:
 data=json.loads(''.join(page.schema))
 assert data['@type']=='LocalBusiness' and data['name']=='Silent Zone Self Study Library'
 assert data['url']==ORIGIN and data['telephone']=='+919942419837'
-assert data['address']=={'@type':'PostalAddress','streetAddress':'Ward No. 4, Sonbersa Chowk, Musapur','addressLocality':'Samastipur','addressRegion':'Bihar','postalCode':'848103','addressCountry':'IN'}
+assert data['geo']['latitude']==25.859534 and data['geo']['longitude']==85.7654646
+assert data['image'] and all((ROOT/u.removeprefix(ORIGIN)).is_file() for u in data['image'])
+assert data['address']=={'@type':'PostalAddress','streetAddress':'Ward No. 4, Sonbersa Chowk, Musa Pur','addressLocality':'Samastipur','addressRegion':'Bihar','postalCode':'848103','addressCountry':'IN'}
 assert data['openingHoursSpecification'][0]['opens']=='06:00' and data['openingHoursSpecification'][0]['closes']=='22:00'
 assert len(data['openingHoursSpecification'][0]['dayOfWeek'])==7
 assert '0xd26c0da7412aeed1' in data['hasMap']
