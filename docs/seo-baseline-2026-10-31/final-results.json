@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-31",
+  "release": "a39e72d",
+  "cloudflare_check": "Workers Builds: libraywebsite",
+  "deployment": "success",
+  "rich_results": {
+    "url": "https://search.google.com/test/rich-results/result?id=nXBBJQNmuXKefQIuY7GAfw",
+    "valid_items": 2,
+    "types": [
+      "Local businesses",
+      "Organization"
+    ]
+  },
+  "schema_org": {
+    "LocalBusiness": 1,
+    "errors": 0,
+    "warnings": 0
+  },
+  "pagespeed": {
+    "report": "https://pagespeed.web.dev/analysis/https-silentzone-nirajpaul-com/w3if2hmz2z",
+    "mobile": {
+      "performance": 98,
+      "accessibility": 100,
+      "best_practices": 100,
+      "seo_checks": 100,
+      "FCP_s": 1.6,
+      "LCP_s": 1.6,
+      "TBT_ms": 0,
+      "CLS": 0,
+      "speed_index_s": 3.9
+    },
+    "desktop": {
+      "performance": 100,
+      "accessibility": 100,
+      "best_practices": 100,
+      "seo_checks": 100,
+      "FCP_s": 0.2,
+      "LCP_s": 0.5,
+      "TBT_ms": 0,
+      "CLS": 0,
+      "speed_index_s": 0.3
+    },
+    "field_data": "No Data",
+    "INP": null
+  },
+  "external_links": {
+    "count": 10,
+    "all_http_200": true
+  },
+  "outstanding": [
+    "HTTP-to-HTTPS redirect",
+    "Search Console sitemap submission",
+    "Google Business Profile checklist",
+    "Real-device and screen-reader tests",
+    "Optional consent and analytics provider integration"
+  ]
+}

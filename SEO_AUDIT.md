@@ -36,7 +36,7 @@ Before editing, the working tree was clean and backup branch `backup/pre-advance
 | Enquiries | Phone, plan-specific WhatsApp and Maps already worked; no tracking integration | P2: first-screen WhatsApp and optional consent-gated event hook |
 | Social preview | Text metadata present, no complete large-image sharing card | P2: add actual library photo and Twitter/OG image metadata |
 
-No accidental `noindex`, `nofollow`, robots blocking rule, missing local asset, broken fragment, or skipped heading level was found by the source checks. Crawlability is not a guarantee of indexing or ranking.
+No accidental `noindex`, `nofollow`, Google Search blocking rule, missing local asset, broken fragment, or skipped heading level was found by the source checks. Crawlability is not a guarantee of indexing or ranking.
 
 ## Search Console evidence
 
@@ -125,17 +125,17 @@ The DevTools MCP trace workflow could not run because that connector is unavaila
 - Build/lint: no package build or lint configuration exists; deploy artifact is the `dist/` directory.
 - Production, Rich Results Test, Schema.org Validator and post-deployment PageSpeed results are recorded in the completion section below after release verification.
 
-Changed files: `dist/index.html`, `dist/style.css`, `dist/_headers`, new `dist/contact-events.js`, new `dist/fonts/*` (four WOFF2 files and two licenses), `scripts/check-seo.py`, new `scripts/check-contact-events.mjs`, new `docs/font-sources.json`, new `docs/seo-baseline-2026-10-31/baseline.json`, and this audit. Existing `robots.txt`, `sitemap.xml`, `_redirects`, photographs and prices were inspected and retained.
+Changed files: `dist/index.html`, `dist/style.css`, `dist/_headers`, new `dist/contact-events.js`, new `dist/fonts/*` (four WOFF2 files and two licenses), `scripts/check-seo.py`, new `scripts/check-contact-events.mjs`, new `docs/font-sources.json`, new `docs/seo-baseline-2026-10-31/baseline.json` and `final-results.json`, and this audit. Existing `robots.txt`, `sitemap.xml`, `_redirects`, photographs and prices were inspected and retained.
 
 ## Remaining tasks and deployment checklist
 
-- [ ] Confirm successful GitHub-triggered Cloudflare build and compare deployed title, H1, schema and assets to this release. The observed integration is **Workers Builds: libraywebsite**, although it was described as Pages earlier; use the actual connected project.
+- [x] Confirm successful GitHub-triggered Cloudflare build and compare deployed title, H1, schema and assets to this release. The observed integration is **Workers Builds: libraywebsite**, although it was described as Pages earlier; use the actual connected project.
 - [ ] **Fix HTTP→HTTPS** at Cloudflare for host `silentzone.nirajpaul.com`, preserving path/query, using a permanent redirect. Do not use an unconditional static redirect that loops HTTPS traffic. Zone-wide Always Use HTTPS also affects other subdomains; use a scoped rule unless all hosts are intended to change. Re-test HTTP `/`, an asset and a query URL.
 - [ ] Check the former `silent-zone-library.nirajpaul2.chatgpt.site` host if still maintained. Its current availability was not established by this audit. Redirect it to the custom domain if controlled; avoid publishing diverging copies. Main site has the correct canonical already.
 - [ ] Keep only intended public pages in the sitemap. No admin/student routes currently exist. Any future private routes require authentication; robots.txt is not access control.
 - [ ] Check phone/WhatsApp opening on real Android/iPhone devices, all membership-prefilled messages, Maps pin and directions, and the embedded map after scrolling. Do not send test messages to students.
 - [ ] Run keyboard-only navigation, zoom at 200%, screen-reader checks and a real-device mobile visit. Verify no overlaps or layout shifts on slow networks.
-- [ ] Re-run mobile/desktop PageSpeed and inspect field CWV when sufficient traffic exists. Lab scores vary between runs.
+- [x] Run post-deployment mobile/desktop PageSpeed. Continue monitoring field CWV when sufficient traffic exists; lab scores vary between runs.
 - [ ] If analytics is desired, select an approved provider and consent manager, document retention/privacy, and connect the event hook only after consent. Verify opt-out produces zero events and no provider requests; distinguish click intent, actual enquiries and confirmed memberships. No collection is operational yet.
 
 ## Google Business Profile checklist
@@ -182,4 +182,30 @@ Avoid ranking guarantees, fake review campaigns, bought spam links, keyword stuf
 
 ## Release completion evidence
 
-Pending release verification; update with observed results rather than assumed success.
+Implementation committed and pushed as `89992c2`; mobile tagline contrast correction as `a39e72d`. Both GitHub checks **Workers Builds: libraywebsite** completed successfully. The live domain serves the revised title, H1, local fonts, business details, guidance and unchanged prices. Final CSS and contact script were compared to local source and matched.
+
+- **Google Rich Results Test:** [live report](https://search.google.com/test/rich-results/result?id=nXBBJQNmuXKefQIuY7GAfw), successful crawl, **2 valid items**: Local businesses (1) and Organization (1). Both classifications derive from the existing LocalBusiness entity; an extra Organization object was not added. Eligibility is not a promise that Google will display a rich result.
+- **Schema.org Validator:** [tested URL](https://validator.schema.org/#url=https%3A%2F%2Fsilentzone.nirajpaul.com%2F), one LocalBusiness, **0 errors / 0 warnings**.
+- **Final PageSpeed:** [mobile](https://pagespeed.web.dev/analysis/https-silentzone-nirajpaul-com/w3if2hmz2z?form_factor=mobile), [desktop](https://pagespeed.web.dev/analysis/https-silentzone-nirajpaul-com/w3if2hmz2z?form_factor=desktop), captured 31 October 2026, 07:26 IST.
+
+| Final lab result | Mobile | Desktop |
+|---|---:|---:|
+| Performance | 98 | 100 |
+| Accessibility | 100 | 100 |
+| Best practices | 100 | 100 |
+| Basic SEO checks | 100 | 100 |
+| FCP | 1.6 s | 0.2 s |
+| LCP | 1.6 s | 0.5 s |
+| TBT | 0 ms | 0 ms |
+| CLS | 0 | 0 |
+| Speed Index | 3.9 s | 0.3 s |
+
+Mobile LCP improved from the observed 2.6-second baseline to 1.6 seconds in the final run. Different runs vary; this is not a controlled field experiment. An intermediate run scored 99 performance / 96 accessibility and identified the mobile tagline contrast. Darkening only that supporting text to `#8c4c31` gave a calculated 5.99:1 contrast against `#f7f4ed`; the final run passed the automated accessibility checks. Field experience remains **No Data**, and INP is still unmeasured.
+
+Production HTTP checks: HTTPS homepage, robots, sitemap, CSS, contact script and preloaded fonts returned **200**; `/index.html` returned **301** to `/`; an unknown URL returned **404**; no `X-Robots-Tag` blocking header was observed. Public HTML contains the revised H1 and content before JS. Sitemap matches the local canonical-only XML. Production robots.txt contains Cloudflare-managed crawler/content-signal directives in addition to the source file: Google Search/Googlebot remain allowed, while some AI/training crawlers are blocked. These provider-managed rules were preserved. HTTP still returns **200**, so the scoped HTTPS redirect remains an explicit hosting task.
+
+All **10 distinct external anchor destinations** returned **200** after following redirects: five WhatsApp messages, three original Google photo links, the business Maps listing and directions. No message or telephone call was sent. Local asset/fragment validation passed; mobile 390px contact layout and embedded map were visually checked on production, all six images loaded, and no horizontal overflow was observed. Native phone/WhatsApp app behavior still requires real-device checks.
+
+A terminal status check initially could not execute because automatic approval review hit an account usage limit; it was successfully retried after the reset time and the user's continuation. No deployment or verification remains blocked by that temporary error.
+
+Machine-readable final results are in `docs/seo-baseline-2026-10-31/final-results.json`. Outstanding owner tasks are the scoped HTTPS redirect, Search Console sitemap submission/live URL reinspection, GBP maintenance, real-device/screen-reader testing, and optional consent-based analytics integration. No ranking or indexing guarantee is made.
